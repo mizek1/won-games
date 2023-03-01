@@ -22,7 +22,7 @@ describe('<Heading />', () => {
   it('should render a heading with a line to the left side', () => {
     renderWithTheme(<Heading lineLeft>Won Games</Heading>)
     expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyle({
-      'border-left': `0.7rem solid ${theme.colors.secondary}`
+      'border-left': `0.7rem solid ${theme.colors.primary}`
     })
   })
 
@@ -36,4 +36,33 @@ describe('<Heading />', () => {
       }
     )
   })
+
+  it('should render a heading with a small size', () => {
+    renderWithTheme(<Heading size="small">Won Games</Heading>)
+    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyle({
+      'font-size': `${theme.font.sizes.medium}`
+    })
+    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyleRule(
+      'width',
+      `3rem`,
+      {
+        modifier: '::after'
+      }
+    )
+  })
+
+  it.each(['primary', 'secondary'] as (keyof typeof theme.colors)[])(
+    'should render with a %s line color',
+    (color) => {
+      renderWithTheme(
+        <Heading lineColor={color} lineLeft lineBottom>
+          Lorem Ipsum
+        </Heading>
+      )
+      const heading = screen.getByRole('heading', { name: /lorem ipsum/i })
+      expect(heading).toHaveStyle({
+        'border-left': `0.7rem solid ${theme.colors[color]}`
+      })
+    }
+  )
 })

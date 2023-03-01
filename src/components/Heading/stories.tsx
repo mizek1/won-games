@@ -7,6 +7,12 @@ export default {
   argTypes: {
     children: {
       type: 'string'
+    },
+    lineColor: {
+      control: {
+        type: 'radio',
+        options: ['primary', 'secondary']
+      }
     }
   }
 } as Meta
