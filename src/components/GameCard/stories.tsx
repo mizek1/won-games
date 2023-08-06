@@ -5,7 +5,8 @@ export default {
   title: 'GameCard',
   component: GameCard,
   argTypes: {
-    onFav: { action: 'clicked' }
+    onFav: { action: 'clicked' },
+    ribbon: { type: 'string' }
   },
   args: {
     title: 'Population Zero',
@@ -26,3 +27,10 @@ export const Default: Story<GameCardProps> = (args) => (
     <GameCard {...args} />
   </div>
 )
+
+export const WithRibbon: Story<GameCardProps> = Default.bind({})
+WithRibbon.args = {
+  ribbon: '20% OFF',
+  ribbonSize: 'small',
+  ribbonColor: 'primary'
+}
