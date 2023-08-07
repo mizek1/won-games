@@ -7,7 +7,7 @@ export default function Index(props: HomeTemplateProps) {
   return <Home {...props} />
 }
 
-export function getServerSideProps() {
+export function getStaticProps() {
   return {
     props: {
       banners: bannersMock,
