@@ -9,9 +9,7 @@ describe('<FormSignIn />', () => {
 
     expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument()
     expect(screen.getByPlaceholderText(/password/i)).toBeInTheDocument()
-    expect(
-      screen.getByRole('button', { name: /sign in now/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /sign in/i })).toBeInTheDocument()
 
     expect(container.parentElement).toMatchSnapshot()
   })
