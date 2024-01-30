@@ -1,3 +1,4 @@
+import { Meta, Story } from '@storybook/react'
 import FormProfile from '.'
 
 export default {
