@@ -2858,7 +2858,7 @@
     "@babel/runtime" "^7.20.7"
     "@styled-icons/styled-icon" "^10.7.0"
 
-"@styled-icons/boxicons-regular@10.47.0":
+"@styled-icons/boxicons-regular@10.47.0", "@styled-icons/boxicons-regular@^10.47.0":
   version "10.47.0"
   resolved "https://registry.yarnpkg.com/@styled-icons/boxicons-regular/-/boxicons-regular-10.47.0.tgz#6318dd8ba9bfbf143c3a32c9d1c72479d376bd3a"
   integrity sha512-z8KczDp4VArXvOn8i2j66Xs4oX9oiiJEhMoHydY3uC9kdtImcxhZ/xHPrgTJLkbK6f5ikwB4CKVnSqQGzzAJNw==
