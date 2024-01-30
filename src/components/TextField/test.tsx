@@ -8,7 +8,7 @@ import { Email } from 'styled-icons/material-outlined'
 
 describe('<TextField />', () => {
   it('should render with label', () => {
-    renderWithTheme(<TextField label="Label" labelFor="field" id="field" />)
+    renderWithTheme(<TextField label="Label" name="field" id="field" />)
     expect(screen.getByLabelText('Label')).toBeInTheDocument()
   })
   it('should render without label', () => {
@@ -22,12 +22,7 @@ describe('<TextField />', () => {
   it('should change its value when typing', async () => {
     const onInput = jest.fn()
     renderWithTheme(
-      <TextField
-        onInput={onInput}
-        label="textfield"
-        labelFor="textfield"
-        id="textfield"
-      />
+      <TextField onInput={onInput} label="textfield" name="textfield" />
     )
     const input = screen.getByRole('textbox')
     const text = 'This is my new text'
@@ -39,9 +34,7 @@ describe('<TextField />', () => {
     expect(onInput).toHaveBeenCalledWith(text)
   })
   it('should be accessible by tab', async () => {
-    renderWithTheme(
-      <TextField label="textfield" labelFor="textfield" id="textfield" />
-    )
+    renderWithTheme(<TextField label="textfield" name="textfield" />)
     const input = screen.getByLabelText('textfield')
     expect(document.body).toHaveFocus()
     await userEvent.tab()
@@ -63,8 +56,7 @@ describe('<TextField />', () => {
       <TextField
         onInput={onInput}
         label="textfield"
-        labelFor="textfield"
-        id="textfield"
+        name="textfield"
         disabled
       />
     )
@@ -78,14 +70,7 @@ describe('<TextField />', () => {
     expect(onInput).not.toHaveBeenCalled()
   })
   it('should not be accessible by tab when disabled', async () => {
-    renderWithTheme(
-      <TextField
-        label="textfield"
-        labelFor="textfield"
-        id="textfield"
-        disabled
-      />
-    )
+    renderWithTheme(<TextField label="textfield" name="textfield" disabled />)
     const input = screen.getByLabelText('textfield')
     expect(document.body).toHaveFocus()
     await userEvent.tab()
@@ -96,7 +81,7 @@ describe('<TextField />', () => {
       <TextField
         icon={<Email data-testid="icon" />}
         label="textfield"
-        labelFor="textfield"
+        name="textfield"
         error="Error message"
       />
     )
