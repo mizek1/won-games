@@ -9,17 +9,19 @@ import { Grid } from 'components/Grid'
 import { Divider } from 'components/Divider'
 import Empty from 'components/Empty'
 
-export type WishlistProps = {
+export type WishlistTemplateProps = {
   games?: GameCardProps[]
+  recommendedTitle?: string
   recommendedGames: GameCardProps[]
   recommendedHighlight: HighlightProps
 }
 
 const Wishlist = ({
   games = [],
+  recommendedTitle,
   recommendedGames,
   recommendedHighlight
-}: WishlistProps) => (
+}: WishlistTemplateProps) => (
   <Base>
     <Container>
       <Heading lineLeft lineColor="secondary">
@@ -44,7 +46,7 @@ const Wishlist = ({
     </Container>
 
     <Showcase
-      title="You may like these games"
+      title={recommendedTitle}
       games={recommendedGames}
       highlight={recommendedHighlight}
     />
