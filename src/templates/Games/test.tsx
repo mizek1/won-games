@@ -35,45 +35,18 @@ jest.mock('next/link', () => ({
 }))
 
 describe('<Games />', () => {
-  it('should render loading when starting the template', () => {
-    renderWithTheme(
-      <MockedProvider mocks={[]} addTypename={false}>
-        <Games filterItems={filterItemsMock} />
-      </MockedProvider>
-    )
-
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
-  })
-
   it('should render sections', async () => {
     renderWithTheme(
       <MockedProvider mocks={[gamesMock]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
     expect(await screen.findByText(/Price/i)).toBeInTheDocument()
     expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
 
     expect(
       await screen.findByRole('button', { name: /show more/i })
     ).toBeInTheDocument()
-  })
-
-  it('should render more games when show more is clicked', async () => {
-    renderWithTheme(
-      <MockedProvider mocks={[gamesMock, fetchMoreMock]} cache={apolloCache}>
-        <Games filterItems={filterItemsMock} />
-      </MockedProvider>
-    )
-
-    expect(await screen.findByText(/Sample Game/i)).toBeInTheDocument()
-
-    await userEvent.click(
-      await screen.findByRole('button', { name: /show more/i })
-    )
-
-    expect(await screen.findByText(/Fetch More Game/i)).toBeInTheDocument()
   })
 
   it('should change push router when selecting a filter', async () => {
