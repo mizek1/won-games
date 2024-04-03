@@ -1,21 +1,21 @@
-import Game, { GameTemplateProps } from 'templates/Game'
-import { useRouter } from 'next/router'
-import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
-import { initializeApollo } from 'utils/apollo'
-import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from 'graphql/queries/games'
 import {
   QueryGameBySlug,
   QueryGameBySlugVariables
 } from 'graphql/generated/QueryGameBySlug'
-import { GetStaticProps } from 'next'
+import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
 import { QueryRecommended } from 'graphql/generated/QueryRecommended'
-import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
-import { gamesMapper, highlightMapper } from 'utils/mappers'
 import {
   QueryUpcoming,
   QueryUpcomingVariables
 } from 'graphql/generated/QueryUpcoming'
+import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from 'graphql/queries/games'
+import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
 import { QUERY_UPCOMING } from 'graphql/queries/upcoming'
+import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
+import Game, { GameTemplateProps } from 'templates/Game'
+import { initializeApollo } from 'utils/apollo'
+import { gamesMapper, highlightMapper } from 'utils/mappers'
 
 const apolloClient = initializeApollo()
 
@@ -73,6 +73,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         ? `http://localhost:1337${game.cover?.src}`
         : '/img/empty.svg',
       gameInfo: {
+        id: game.id,
         title: game.name,
         price: game.price,
         description: game.short_description

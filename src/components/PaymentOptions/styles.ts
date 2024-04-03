@@ -3,14 +3,11 @@ import styled, { css, DefaultTheme } from 'styled-components'
 
 import * as ButtonStyles from 'components/Button/styles'
 
-export const Wrapper = styled.main`
-  ${({ theme }) => css`
-    background: ${theme.colors.white};
-  `}
-`
+export const Wrapper = styled.div``
 
 export const Body = styled.div`
   ${({ theme }) => css`
+    background: ${theme.colors.white};
     padding: ${theme.spacings.small};
   `}
 `
@@ -73,6 +70,7 @@ export const CardItem = styled.label`
 export const AddCard = styled.div`
   ${({ theme }) => css`
     ${ItemStyles(theme)};
+
     svg {
       margin-left: ${theme.spacings.xxsmall};
       margin-right: ${theme.spacings.xsmall};
