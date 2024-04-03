@@ -1,13 +1,12 @@
-import { renderWithTheme } from 'utils/tests/helpers'
-
 import { FormLink, FormWrapper } from '.'
+import { render } from 'utils/test-utils'
 
 describe('<Form />', () => {
   it('should render the heading', () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <FormWrapper>
         <FormLink>
-          My nice <a href="#">link</a>
+          My nice<a href="#">link</a>
         </FormLink>
       </FormWrapper>
     )
@@ -41,7 +40,7 @@ describe('<Form />', () => {
             <div
               class="c0"
             >
-              My nice 
+              My nice
               <a
                 href="#"
               >

@@ -1,14 +1,13 @@
 import 'match-media-mock'
-import { fireEvent, screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
 
 import Gallery from '.'
 
 import mockItems from './mock'
+import { render, fireEvent, screen } from 'utils/test-utils'
 
 describe('<Gallery />', () => {
   it('should render thumbnails as buttons', () => {
-    renderWithTheme(<Gallery items={mockItems.slice(0, 2)} />)
+    render(<Gallery items={mockItems.slice(0, 2)} />)
     expect(
       screen.getByRole('button', { name: /Thumb - Gallery Image 1/i })
     ).toHaveAttribute('src', mockItems[0].src)
@@ -18,7 +17,7 @@ describe('<Gallery />', () => {
   })
 
   it('should handle open modal', () => {
-    renderWithTheme(<Gallery items={mockItems.slice(0, 2)} />)
+    render(<Gallery items={mockItems.slice(0, 2)} />)
     const modal = screen.getByLabelText('modal')
     expect(modal.getAttribute('aria-hidden')).toBe('true')
     expect(modal).toHaveStyle({ opacity: 0, pointerEvents: 'none' })
@@ -30,7 +29,7 @@ describe('<Gallery />', () => {
   })
 
   it('should handle close modal when overlay or button clicked', () => {
-    renderWithTheme(<Gallery items={mockItems.slice(0, 2)} />)
+    render(<Gallery items={mockItems.slice(0, 2)} />)
     const modal = screen.getByLabelText('modal')
     fireEvent.click(
       screen.getByRole('button', { name: /Thumb - Gallery Image 1/i })
@@ -41,9 +40,7 @@ describe('<Gallery />', () => {
   })
 
   it('should handle close modal when ESC button is pressed', () => {
-    const { container } = renderWithTheme(
-      <Gallery items={mockItems.slice(0, 2)} />
-    )
+    const { container } = render(<Gallery items={mockItems.slice(0, 2)} />)
     const modal = screen.getByLabelText('modal')
     fireEvent.click(
       screen.getByRole('button', { name: /Thumb - Gallery Image 1/i })
@@ -54,7 +51,7 @@ describe('<Gallery />', () => {
   })
 
   it('should open modal with selected image', async () => {
-    renderWithTheme(<Gallery items={mockItems.slice(0, 2)} />)
+    render(<Gallery items={mockItems.slice(0, 2)} />)
     fireEvent.click(
       screen.getByRole('button', { name: /Thumb - Gallery Image 2/i })
     )

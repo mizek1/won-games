@@ -1,13 +1,11 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
-
 import Footer from '.'
+import { render, screen } from 'utils/test-utils'
 
 describe('<Footer />', () => {
   it.each(['contact', 'follow us', 'links', 'location'])(
     'should render %s column',
     (column) => {
-      renderWithTheme(<Footer />)
+      render(<Footer />)
       expect(
         screen.getByRole('heading', { name: new RegExp(column, 'i') })
       ).toBeInTheDocument()
