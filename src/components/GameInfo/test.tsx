@@ -1,9 +1,10 @@
 import { screen } from '@testing-library/react'
 
-import GameInfo from '.'
 import { render } from 'utils/test-utils'
+import GameInfo from '.'
 
 const props = {
+  id: '1',
   title: 'My Game Title',
   description: 'Game description',
   price: 210
