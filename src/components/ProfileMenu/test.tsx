@@ -1,7 +1,7 @@
 import theme from 'styles/theme'
 
-import ProfileMenu from '.'
 import { render, screen } from 'utils/test-utils'
+import ProfileMenu from '.'
 
 describe('<ProfileMenu />', () => {
   it('should render the menu', () => {
@@ -11,7 +11,9 @@ describe('<ProfileMenu />', () => {
     ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /my cards/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /my orders/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /sign out/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /sign out/i })
+    ).toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
   })
   it('should render the menu with an active link defined', () => {

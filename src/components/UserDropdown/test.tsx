@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 
-import UserDropdown from '.'
 import { render, screen } from 'utils/test-utils'
+import UserDropdown from '.'
 
 describe('<UserDropdown />', () => {
   it('should render the username', () => {
@@ -17,6 +17,8 @@ describe('<UserDropdown />', () => {
     ).toBeInTheDocument()
 
     expect(screen.getByRole('link', { name: /wishlist/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /sign out/i })).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /sign out/i })
+    ).toBeInTheDocument()
   })
 })

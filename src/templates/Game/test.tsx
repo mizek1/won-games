@@ -1,12 +1,12 @@
 import galleryMock from 'components/Gallery/mock'
-import gameInfoMock from 'components/GameInfo/mock'
-import gameDetailsMock from 'components/GameDetails/mock'
 import gamesMock from 'components/GameCardSlider/mock'
+import gameDetailsMock from 'components/GameDetails/mock'
+import gameInfoMock from 'components/GameInfo/mock'
 import highlightMock from 'components/Highlight/mock'
 
-import Game, { GameTemplateProps } from '.'
 import { GameDetailsProps } from 'components/GameDetails'
 import { render, screen } from 'utils/test-utils'
+import Game, { GameTemplateProps } from '.'
 
 const props: GameTemplateProps = {
   cover: 'bg-image.jpg',
@@ -18,6 +18,13 @@ const props: GameTemplateProps = {
   upcomingHighlight: highlightMock,
   recommendedGames: gamesMock
 }
+
+jest.mock('templates/Base', () => ({
+  __esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Base">{children}</div>
+  }
+}))
 
 jest.mock('components/Menu', () => ({
   __esModule: true,
