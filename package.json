@@ -35,6 +35,7 @@
     "@styled-icons/fa-brands": "^10.47.0",
     "@types/lodash.xor": "^4.5.9",
     "graphql": "15.5.1",
+    "joi": "^17.12.3",
     "lodash.xor": "^4.5.0",
     "next": "12.0.10",
     "next-auth": "3.11.2",
