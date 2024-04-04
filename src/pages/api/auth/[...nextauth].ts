@@ -27,8 +27,9 @@ const options = {
 
         if (data.user) {
           return { ...data.user, jwt: data.jwt }
+        } else {
+          return null
         }
-        return null
       }
     })
   ],
