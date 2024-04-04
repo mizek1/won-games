@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<TextField /> should render with error 1`] = `
+.c7 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
 .c4 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -69,12 +75,6 @@ exports[`<TextField /> should render with error 1`] = `
 .c0 .c5,
 .c0 .c1 {
   color: #FF6347;
-}
-
-.c7 {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
 }
 
 <div

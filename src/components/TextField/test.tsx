@@ -1,7 +1,7 @@
-import TextField from '.'
 import userEvent from '@testing-library/user-event'
 import { Email } from 'styled-icons/material-outlined'
 import { render, screen, waitFor } from 'utils/test-utils'
+import TextField from '.'
 
 describe('<TextField />', () => {
   it('should render with label', () => {
@@ -18,7 +18,9 @@ describe('<TextField />', () => {
   })
   it('should change its value when typing', async () => {
     const onInput = jest.fn()
-    render(<TextField onInput={onInput} label="textfield" name="textfield" />)
+    render(
+      <TextField onInputChange={onInput} label="textfield" name="textfield" />
+    )
     const input = screen.getByRole('textbox')
     const text = 'This is my new text'
     await userEvent.type(input, text)
@@ -49,7 +51,7 @@ describe('<TextField />', () => {
     const onInput = jest.fn()
     render(
       <TextField
-        onInput={onInput}
+        onInputChange={onInput}
         label="textfield"
         name="textfield"
         disabled
