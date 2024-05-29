@@ -1,3 +1,4 @@
+import 'session.mock'
 import { ArrowBackIos as ArrowLeft } from '@styled-icons/material-outlined/ArrowBackIos'
 import { ArrowForwardIos as ArrowRight } from '@styled-icons/material-outlined/ArrowForwardIos'
 import Slider, { SliderSettings } from 'components/Slider'
