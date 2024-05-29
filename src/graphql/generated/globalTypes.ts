@@ -23,18 +23,45 @@ export enum ENUM_COMPONENTPAGERIBBON_SIZE {
 }
 
 export enum ENUM_GAME_RATING {
-  FREE = "FREE",
-  pegi12 = "pegi12",
-  pegi16 = "pegi16",
-  pegi18 = "pegi18",
-  pegi3 = "pegi3",
-  pegi7 = "pegi7",
+  BR0 = "BR0",
+  BR10 = "BR10",
+  BR12 = "BR12",
+  BR14 = "BR14",
+  BR16 = "BR16",
+  BR18 = "BR18",
+}
+
+export interface InputID {
+  id: string;
 }
 
 export interface UsersPermissionsRegisterInput {
   username: string;
   email: string;
   password: string;
+}
+
+export interface WishlistInput {
+  user?: string | null;
+  games?: (string | null)[] | null;
+  created_by?: string | null;
+  updated_by?: string | null;
+}
+
+export interface createWishlistInput {
+  data?: WishlistInput | null;
+}
+
+export interface editWishlistInput {
+  user?: string | null;
+  games?: (string | null)[] | null;
+  created_by?: string | null;
+  updated_by?: string | null;
+}
+
+export interface updateWishlistInput {
+  where?: InputID | null;
+  data?: editWishlistInput | null;
 }
 
 //==============================================================
