@@ -13,7 +13,7 @@ export interface QueryWishlist_wishlists_games_cover {
 }
 
 export interface QueryWishlist_wishlists_games_developers {
-  __typename: "Developer";
+  __typename: "Developers";
   name: string;
 }
 
