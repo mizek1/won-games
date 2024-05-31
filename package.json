@@ -1,7 +1,7 @@
 {
   "name": "react-avancado-boilerplate",
   "engines": {
-    "node": "16.19.0"
+    "node": "20.x"
   },
   "version": "1.0.0",
   "private": true,
