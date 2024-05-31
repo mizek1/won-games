@@ -10,12 +10,16 @@ import Base from 'templates/Base'
 
 import * as S from './styles'
 import PaymentForm from 'components/PaymentForm'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 
 export type CartProps = {
   recommendedTitle: string
   recommendedGames: GameCardProps[]
   recommendedHighlight: HighlightProps
 } & CartListProps
+
+const stripe = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`)
 
 const Cart = ({
   recommendedTitle,
@@ -31,7 +35,9 @@ const Cart = ({
 
         <S.Content>
           <CartList />
-          <PaymentForm />
+          <Elements stripe={stripe}>
+            <PaymentForm />
+          </Elements>
         </S.Content>
 
         <S.Text>
