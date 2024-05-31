@@ -15,7 +15,7 @@ export interface MutationCreateWishlist_createWishlist_wishlist_games_cover {
 }
 
 export interface MutationCreateWishlist_createWishlist_wishlist_games_developers {
-  __typename: "Developer";
+  __typename: "Developers";
   name: string;
 }
 
