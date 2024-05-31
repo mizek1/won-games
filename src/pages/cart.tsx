@@ -7,8 +7,6 @@ import { GetServerSidePropsContext } from 'next'
 
 import Cart, { CartProps } from 'templates/Cart'
 
-import cardsMock from 'components/PaymentOptions/mock'
-
 export default function CartPage(props: CartProps) {
   return <Cart {...props} />
 }
@@ -24,7 +22,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       session,
-      cards: cardsMock,
       recommendedTitle: data.recommended?.section?.title,
       recommendedGames: gamesMapper(data.recommended?.section?.games),
       recommendedHighlight: highlightMapper(
