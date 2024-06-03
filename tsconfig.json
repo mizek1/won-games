@@ -21,7 +21,9 @@
     "incremental": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "cypress",
+    "cypress.json"
   ],
   "include": [
     "next-env.d.ts",
