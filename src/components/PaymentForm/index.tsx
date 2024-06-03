@@ -12,6 +12,7 @@ import { PaymentIntent, StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { Session } from 'next-auth/client'
 import { createPayment, createPaymentIntent } from 'utils/stripe/methods'
 import { FormLoading } from 'components/Form'
+import Link from 'next/link'
 
 type PaymentFormProps = {
   session: Session
@@ -129,9 +130,11 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
           )}
         </S.Body>
         <S.Footer>
-          <Button as="a" fullWidth minimal>
-            Continue shopping
-          </Button>
+          <Link href="/" passHref>
+            <Button as="a" fullWidth minimal>
+              Continue shopping
+            </Button>
+          </Link>
           <Button
             fullWidth
             icon={loading ? <FormLoading /> : <ShoppingCart />}
