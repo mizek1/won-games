@@ -8,9 +8,9 @@ import Heading from 'components/Heading'
 
 import * as S from './styles'
 import { useState, useEffect } from 'react'
-import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
+import { PaymentIntent, StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { Session } from 'next-auth/client'
-import { createPaymentIntent } from 'utils/stripe/methods'
+import { createPayment, createPaymentIntent } from 'utils/stripe/methods'
 import { FormLoading } from 'components/Form'
 
 type PaymentFormProps = {
@@ -59,11 +59,22 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     setError(event.error ? event.error.message : '')
   }
 
+  const saveOrder = async (paymentIntent?: PaymentIntent) => {
+    const data = await createPayment({
+      items,
+      paymentIntent,
+      token: session.jwt
+    })
+
+    return data
+  }
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     setLoading(true)
 
     if (freeGames) {
+      saveOrder()
       push('/success')
       return
     }
@@ -81,6 +92,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     }
 
     setError(null)
+    saveOrder(payload.paymentIntent)
     setLoading(false)
     push('/success')
   }
