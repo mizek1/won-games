@@ -92,11 +92,10 @@ describe('<Game />', () => {
 
   it('should render the cover image', () => {
     render(<Game {...props} />)
-    const cover = screen.getByRole('image', { name: /cover/i })
-    expect(cover).toHaveStyle({
-      backgroundImage: 'url(bg-image.jpg)',
-      height: '39.5rem'
-    })
+    const cover = screen.getByRole('img', {
+      name: /The Last of Us Part II/i
+    }).parentElement
+
     expect(cover).toHaveStyleRule('height', '70rem', {
       media: '(min-width: 768px)'
     })

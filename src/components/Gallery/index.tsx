@@ -6,6 +6,7 @@ import * as S from './styles'
 import { useEffect, useState, useRef } from 'react'
 import { Close } from '@styled-icons/material-outlined/Close'
 import SlickSlider from 'react-slick'
+import Image from 'next/image'
 
 export type GalleryImageProps = {
   src: string
@@ -74,7 +75,9 @@ const Gallery = ({ items }: GalleryProps) => {
     <S.Wrapper>
       <Slider ref={slider} settings={settings}>
         {items.map((item, index) => (
-          <img
+          <Image
+            width={295}
+            height={165}
             role="button"
             key={`thumb-${item.src}`}
             src={item.src}
@@ -98,9 +101,11 @@ const Gallery = ({ items }: GalleryProps) => {
 
         <S.Content>
           <Slider ref={slider} settings={modalSettings}>
-            {items.map((item) => (
-              <img
-                key={`gallery-${item.src}`}
+            {items.map((item, index) => (
+              <Image
+                width={1200}
+                height={675}
+                key={`gallery-${index}`}
                 src={item.src}
                 alt={item.label}
               />

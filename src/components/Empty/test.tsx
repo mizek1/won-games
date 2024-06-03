@@ -10,7 +10,7 @@ describe('<Empty />', () => {
   it('should render correctly', () => {
     const { container } = render(<Empty {...props} hasLink />)
     expect(
-      screen.getByRole('image', {
+      screen.getByRole('img', {
         name: /a gamer in a couch playing videogame/i
       })
     ).toBeInTheDocument()
