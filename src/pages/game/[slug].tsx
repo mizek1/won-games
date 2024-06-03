@@ -70,6 +70,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     revalidate: 60,
     props: {
+      slug: params?.slug,
       cover: game.cover ? `${getImageUrl(game.cover?.src)}` : '/img/empty.svg',
       gameInfo: {
         id: game.id,
