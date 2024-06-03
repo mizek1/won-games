@@ -655,10 +655,10 @@ type Order {
   created_at: DateTime!
   updated_at: DateTime!
   user: UsersPermissionsUser
-  total_in_cents: Long!
   payment_intent_id: String
   card_brand: String
   card_last4: String
+  total_in_cents: Long
   games(sort: String, limit: Int, start: Int, where: JSON): [Game!]!
 }
 
@@ -678,10 +678,10 @@ type OrderGroupBy {
   created_at: [OrderConnectionCreated_at]
   updated_at: [OrderConnectionUpdated_at]
   user: [OrderConnectionUser]
-  total_in_cents: [OrderConnectionTotal_in_cents]
   payment_intent_id: [OrderConnectionPayment_intent_id]
   card_brand: [OrderConnectionCard_brand]
   card_last4: [OrderConnectionCard_last4]
+  total_in_cents: [OrderConnectionTotal_in_cents]
 }
 
 type OrderConnectionId {
@@ -704,11 +704,6 @@ type OrderConnectionUser {
   connection: OrderConnection
 }
 
-type OrderConnectionTotal_in_cents {
-  key: ID
-  connection: OrderConnection
-}
-
 type OrderConnectionPayment_intent_id {
   key: String
   connection: OrderConnection
@@ -724,13 +719,18 @@ type OrderConnectionCard_last4 {
   connection: OrderConnection
 }
 
+type OrderConnectionTotal_in_cents {
+  key: ID
+  connection: OrderConnection
+}
+
 input OrderInput {
   user: ID
   games: [ID]
-  total_in_cents: Long!
   payment_intent_id: String
   card_brand: String
   card_last4: String
+  total_in_cents: Long
   created_by: ID
   updated_by: ID
 }
@@ -738,10 +738,10 @@ input OrderInput {
 input editOrderInput {
   user: ID
   games: [ID]
-  total_in_cents: Long
   payment_intent_id: String
   card_brand: String
   card_last4: String
+  total_in_cents: Long
   created_by: ID
   updated_by: ID
 }
@@ -1091,6 +1091,43 @@ input deleteWishlistInput {
 
 type deleteWishlistPayload {
   wishlist: Wishlist
+}
+
+type EmailDesignerEmailTemplate {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  design: JSON
+  name: String
+  subject: String
+  bodyHtml: String
+  bodyText: String
+  enabled: Boolean
+  tags: JSON
+}
+
+input EmailTemplateInput {
+  design: JSON
+  name: String
+  subject: String
+  bodyHtml: String
+  bodyText: String
+  enabled: Boolean
+  tags: JSON
+  created_by: ID
+  updated_by: ID
+}
+
+input editEmailTemplateInput {
+  design: JSON
+  name: String
+  subject: String
+  bodyHtml: String
+  bodyText: String
+  enabled: Boolean
+  tags: JSON
+  created_by: ID
+  updated_by: ID
 }
 
 type I18NLocale {
@@ -1684,7 +1721,7 @@ input editComponentPageSectionInput {
   highlight: editComponentPageHighlightInput
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Developers | DevelopersConnection | DevelopersAggregator | DevelopersGroupBy | DevelopersConnectionId | DevelopersConnectionCreated_at | DevelopersConnectionUpdated_at | DevelopersConnectionName | DevelopersConnectionSlug | DevelopersConnectionPublished_at | createDeveloperPayload | updateDeveloperPayload | deleteDeveloperPayload | Game | GameConnection | GameAggregator | GameAggregatorSum | GameAggregatorAvg | GameAggregatorMin | GameAggregatorMax | GameGroupBy | GameConnectionId | GameConnectionCreated_at | GameConnectionUpdated_at | GameConnectionName | GameConnectionSlug | GameConnectionShort_description | GameConnectionDescription | GameConnectionPrice | GameConnectionRelease_date | GameConnectionRating | GameConnectionCover | GameConnectionPublisher | GameConnectionPublished_at | createGamePayload | updateGamePayload | deleteGamePayload | Home | updateHomePayload | deleteHomePayload | Order | OrderConnection | OrderAggregator | OrderGroupBy | OrderConnectionId | OrderConnectionCreated_at | OrderConnectionUpdated_at | OrderConnectionUser | OrderConnectionTotal_in_cents | OrderConnectionPayment_intent_id | OrderConnectionCard_brand | OrderConnectionCard_last4 | createOrderPayload | updateOrderPayload | deleteOrderPayload | Platforms | PlatformsConnection | PlatformsAggregator | PlatformsGroupBy | PlatformsConnectionId | PlatformsConnectionCreated_at | PlatformsConnectionUpdated_at | PlatformsConnectionName | PlatformsConnectionSlug | PlatformsConnectionPublished_at | createPlatformPayload | updatePlatformPayload | deletePlatformPayload | Publisher | PublisherConnection | PublisherAggregator | PublisherGroupBy | PublisherConnectionId | PublisherConnectionCreated_at | PublisherConnectionUpdated_at | PublisherConnectionName | PublisherConnectionSlug | PublisherConnectionPublished_at | createPublisherPayload | updatePublisherPayload | deletePublisherPayload | Recommended | updateRecommendedPayload | deleteRecommendedPayload | Wishlist | WishlistConnection | WishlistAggregator | WishlistGroupBy | WishlistConnectionId | WishlistConnectionCreated_at | WishlistConnectionUpdated_at | WishlistConnectionUser | createWishlistPayload | updateWishlistPayload | deleteWishlistPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPageButton | ComponentPageHighlight | ComponentPagePopularGames | ComponentPageRibbon | ComponentPageSection
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Banner | BannerConnection | BannerAggregator | BannerGroupBy | BannerConnectionId | BannerConnectionCreated_at | BannerConnectionUpdated_at | BannerConnectionImage | BannerConnectionTitle | BannerConnectionSubtitle | BannerConnectionButton | BannerConnectionRibbon | BannerConnectionPublished_at | createBannerPayload | updateBannerPayload | deleteBannerPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionPublished_at | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Developers | DevelopersConnection | DevelopersAggregator | DevelopersGroupBy | DevelopersConnectionId | DevelopersConnectionCreated_at | DevelopersConnectionUpdated_at | DevelopersConnectionName | DevelopersConnectionSlug | DevelopersConnectionPublished_at | createDeveloperPayload | updateDeveloperPayload | deleteDeveloperPayload | Game | GameConnection | GameAggregator | GameAggregatorSum | GameAggregatorAvg | GameAggregatorMin | GameAggregatorMax | GameGroupBy | GameConnectionId | GameConnectionCreated_at | GameConnectionUpdated_at | GameConnectionName | GameConnectionSlug | GameConnectionShort_description | GameConnectionDescription | GameConnectionPrice | GameConnectionRelease_date | GameConnectionRating | GameConnectionCover | GameConnectionPublisher | GameConnectionPublished_at | createGamePayload | updateGamePayload | deleteGamePayload | Home | updateHomePayload | deleteHomePayload | Order | OrderConnection | OrderAggregator | OrderGroupBy | OrderConnectionId | OrderConnectionCreated_at | OrderConnectionUpdated_at | OrderConnectionUser | OrderConnectionPayment_intent_id | OrderConnectionCard_brand | OrderConnectionCard_last4 | OrderConnectionTotal_in_cents | createOrderPayload | updateOrderPayload | deleteOrderPayload | Platforms | PlatformsConnection | PlatformsAggregator | PlatformsGroupBy | PlatformsConnectionId | PlatformsConnectionCreated_at | PlatformsConnectionUpdated_at | PlatformsConnectionName | PlatformsConnectionSlug | PlatformsConnectionPublished_at | createPlatformPayload | updatePlatformPayload | deletePlatformPayload | Publisher | PublisherConnection | PublisherAggregator | PublisherGroupBy | PublisherConnectionId | PublisherConnectionCreated_at | PublisherConnectionUpdated_at | PublisherConnectionName | PublisherConnectionSlug | PublisherConnectionPublished_at | createPublisherPayload | updatePublisherPayload | deletePublisherPayload | Recommended | updateRecommendedPayload | deleteRecommendedPayload | Wishlist | WishlistConnection | WishlistAggregator | WishlistGroupBy | WishlistConnectionId | WishlistConnectionCreated_at | WishlistConnectionUpdated_at | WishlistConnectionUser | createWishlistPayload | updateWishlistPayload | deleteWishlistPayload | EmailDesignerEmailTemplate | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPageButton | ComponentPageHighlight | ComponentPagePopularGames | ComponentPageRibbon | ComponentPageSection
 
 input InputID {
   id: ID!
