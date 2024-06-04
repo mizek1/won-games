@@ -21,6 +21,18 @@ Cypress.Commands.add('signIn', (email = 'e2e@wongames.com', password = '123456')
   cy.findByRole('button', { name: /sign in now/i }).click()
 })
 
+Cypress.Commands.add('addToCartByIndex', (index) => {
+  cy.getByDataCy('game-card').eq(index).within(() => {
+    cy.findByRole('button', { name: /add to cart/i }).click()
+  })
+})
+
+Cypress.Commands.add('removeFromCartByIndex', (index) => {
+  cy.getByDataCy('game-card').eq(index).within(() => {
+    cy.findByRole('button', { name: /remove from cart/i }).click()
+  })
+})
+
 Cypress.Commands.add('shouldRenderBanner', () => {
   cy.get('.slick-slider').within(() => {
     cy.findByRole('heading', { name: /overcooked 2/i })
