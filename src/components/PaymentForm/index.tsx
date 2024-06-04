@@ -9,7 +9,7 @@ import Heading from 'components/Heading'
 import * as S from './styles'
 import { useState, useEffect } from 'react'
 import { PaymentIntent, StripeCardElementChangeEvent } from '@stripe/stripe-js'
-import { Session } from 'next-auth/client'
+import { Session } from 'next-auth'
 import { createPayment, createPaymentIntent } from 'utils/stripe/methods'
 import { FormLoading } from 'components/Form'
 import Link from 'next/link'
@@ -34,7 +34,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
       if (items.length) {
         const data = await createPaymentIntent({
           items,
-          token: session.jwt
+          token: session.jwt as string
         })
 
         if (data.freeGames) {
@@ -64,7 +64,7 @@ const PaymentForm = ({ session }: PaymentFormProps) => {
     const data = await createPayment({
       items,
       paymentIntent,
-      token: session.jwt
+      token: session.jwt as string
     })
 
     return data
