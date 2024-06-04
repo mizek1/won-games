@@ -109,6 +109,7 @@ exports[`<Highlight /> should render headings and button 1`] = `
 
 <main
   class="c0"
+  data-cy="highlight"
 >
   <img
     alt="Heading 1 background"
@@ -130,6 +131,7 @@ exports[`<Highlight /> should render headings and button 1`] = `
     </h3>
     <a
       class="c5"
+      data-cy="highlight-btn"
       href="/rdr2"
     >
       <span>

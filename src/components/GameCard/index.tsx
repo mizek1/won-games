@@ -33,7 +33,7 @@ const GameCard = ({
   ribbonColor = 'primary',
   slug
 }: GameCardProps) => (
-  <S.Wrapper>
+  <S.Wrapper data-cy="game-card">
     {!!ribbon && (
       <Ribbon size={ribbonSize} color={ribbonColor}>
         {ribbon}
