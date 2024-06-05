@@ -12,7 +12,7 @@ import * as S from './styles'
 import PaymentForm from 'components/PaymentForm'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-import { Session } from 'next-auth/client'
+import { Session } from 'next-auth'
 
 export type CartProps = {
   session: Session
